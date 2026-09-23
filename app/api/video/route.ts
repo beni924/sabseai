@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createVideoJob } from '@/lib/video-pipeline'
 
+export const maxDuration = 300
 const videoRequestSchema = z.object({
   prompt: z
     .string()
