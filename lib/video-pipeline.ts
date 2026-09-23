@@ -1,6 +1,7 @@
 import { generateText } from 'ai'
 import { google } from '@ai-sdk/google'
 import { Sandbox } from '@e2b/code-interpreter'
+import { waitUntil } from '@vercel/functions'
 
 export type VideoJobData = {
   id: string
@@ -49,7 +50,7 @@ export function createVideoJob(prompt: string, duration: number, aspectRatio: st
   jobsMap.set(id, job)
 
   // Start background processing pipeline
-  void executePipeline(id, prompt, duration, aspectRatio)
+ waitUntil(executePipeline(id, prompt, duration, aspectRatio))
 
   return job
 }
